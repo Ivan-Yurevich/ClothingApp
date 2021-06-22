@@ -7,43 +7,62 @@ namespace ClothingApp.Models
 {
     public abstract class Сlothes
     {
-        public int Id { get; private set; }
-        public string Url { get; private set; }
+        public int Id { get; set; }
+        public string Url { get; set; }
 
-        //диапазон температуры, в которой стоит носить эту одежду
-        public  int minTemp { get; set; }
-        public int maxTemp { get; set; }
-        //можно ли надеть в дождь? 
-        public bool forRain { get; set; }
+        /// <summary>
+        /// диапазон температуры, в котором стоит носить эту одежду
+        /// </summary>
+        public int MinTemp { get; set; }
+        public int MaxTemp { get; set; }
+        /// <summary>
+        /// можно ли надеть в дождь? 
+        /// </summary>
+        public bool IsforRain { get; set; }
 
     }
 
+    /// <summary>
+    /// обувь
+    /// </summary>
     public class Shoes : Сlothes
     {
-        //обувь
+
     }
 
+    /// <summary>
+    /// низ
+    /// штаны/шорты/юбки
+    /// </summary>
     public class LegsClothes : Сlothes
     {
-        //низ
-        //штаны/шорты/юбки
+
     }
 
+    /// <summary>
+    /// верхняя одежда
+    /// куртки, пальто, и т.д.
+    /// </summary>
     public class OutWear : Сlothes
     {
-        //верхняя одежда
-        //куртки, пальто, и т.д.
+
     }
 
+    /// <summary>
+    /// верх
+    /// футболка, рубашка, свитер и т.д.
+    /// </summary>
     public class BodyClothes : Сlothes
     {
-        //верх
-        //футболка, рубашка, свитер и т.д.
+
     }
 
+    /// <summary>
+    /// аксессуары
+    /// зонты, шарфы, шляпы, шапки и т.д.
+    /// </summary>
     public class Accessory : Сlothes
     {
-        //аксессуары
-        //зонты, шарфы, шляпы, шапки и т.д.
+
     }
 }
