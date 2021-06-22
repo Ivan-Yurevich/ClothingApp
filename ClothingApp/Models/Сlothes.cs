@@ -8,6 +8,11 @@ namespace ClothingApp.Models
     public abstract class Сlothes
     {
         public int Id { get; set; }
+
+        /// <summary>
+        /// пол (мужской, женский)
+        /// </summary>
+        public string Gender { get; set; }
         public string Url { get; set; }
 
         /// <summary>
@@ -15,10 +20,16 @@ namespace ClothingApp.Models
         /// </summary>
         public int MinTemp { get; set; }
         public int MaxTemp { get; set; }
+
         /// <summary>
         /// можно ли надеть в дождь? 
         /// </summary>
         public bool IsforRain { get; set; }
+
+        /// <summary>
+        /// совет по модели, цвету
+        /// </summary>
+        public string Advice { get; set; }
 
     }
 
