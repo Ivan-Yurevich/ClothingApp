@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ClothingApp.Interfaces
+﻿namespace ClothingApp.Interfaces
 {
-    interface IWeather
+    internal interface IWeather
     {
         /// <summary>
         /// получение текущей погоды
         /// </summary>
-        void Current_Weather();
+        void CurrentWeather();
+
         /// <summary>
         /// получение погоды на сегодня, завтра, неделю
         /// </summary>
-        void Future_Weather();
+        void FutureWeather();
+
         /// <summary>
         /// выбор/определение региона
         /// </summary>
-        void Current_Region();
+        void CurrentRegion();
     }
 }
