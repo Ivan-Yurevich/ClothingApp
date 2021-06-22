@@ -5,21 +5,45 @@ using System.Threading.Tasks;
 
 namespace ClothingApp.Models
 {
-    public class Сlothes
+    public abstract class Сlothes
     {
-        public int Id { get; set; }
-        /// <summary>
-        /// верх 
-        /// </summary>
-        public string BodyClothes { get; set; }
-        /// <summary>
-        /// низ
-        /// </summary>
-        public string LegsClothes { get; set; }
-        /// <summary>
-        /// обувь
-        /// </summary>
-        public string Shoes { get; set; }
-        
+        public int Id { get; private set; }
+        public string Url { get; private set; }
+
+        //диапазон температуры, в которой стоит носить эту одежду
+        public  int minTemp { get; set; }
+        public int maxTemp { get; set; }
+        //можно ли надеть в дождь? 
+        public bool forRain { get; set; }
+
+    }
+
+    public class Shoes : Сlothes
+    {
+        //обувь
+    }
+
+    public class LegsClothes : Сlothes
+    {
+        //низ
+        //штаны/шорты/юбки
+    }
+
+    public class OutWear : Сlothes
+    {
+        //верхняя одежда
+        //куртки, пальто, и т.д.
+    }
+
+    public class BodyClothes : Сlothes
+    {
+        //верх
+        //футболка, рубашка, свитер и т.д.
+    }
+
+    public class Accessory : Сlothes
+    {
+        //аксессуары
+        //зонты, шарфы, шляпы, шапки и т.д.
     }
 }
