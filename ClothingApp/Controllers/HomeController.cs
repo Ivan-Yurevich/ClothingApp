@@ -22,6 +22,11 @@ namespace ClothingApp.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public string GetName()
+        {
+            return "Иван";
+        }
 
         public IActionResult Privacy()
         {

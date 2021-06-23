@@ -20,6 +20,14 @@ namespace ClothingApp.Models
         /// обувь
         /// </summary>
         public string Shoes { get; set; }
-        
+        /// <summary>
+        /// головной убор
+        /// </summary>
+        public string Headwear { get; set; }
+        /// <summary>
+        /// аксессуары
+        /// </summary>
+        public string Accessories { get; set; }
+
     }
 }
