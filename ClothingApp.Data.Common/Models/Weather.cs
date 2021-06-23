@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace ClothingApp.Models
+namespace ClothingApp.Data.Common.Models
 {
     public class Weather
     {

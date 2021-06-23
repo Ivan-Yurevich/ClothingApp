@@ -1,5 +1,3 @@
-using System;
-
 namespace ClothingApp.Models
 {
     public class ErrorViewModel
