@@ -1,6 +1,4 @@
 ﻿using Dadata;
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -10,9 +8,11 @@ namespace ClothingApp.Core.Services.WeatherService
 {
     public class WeatherService : IWeatherService
     {
-        public WeatherService()
+        private string _token;
+
+        public WeatherService(string token)
         {
-            // Подгрузить токен
+            _token = token;
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace ClothingApp.Core.Services.WeatherService
         /// </summary>
         public async Task<string> GetCity(string remoteIpAddress)
         {
-            var api = new SuggestClientAsync(""); // вставить токен
+            var api = new SuggestClientAsync(_token); // вставить токен
             var result = await api.Iplocate(remoteIpAddress);
 
             return result.location.value;

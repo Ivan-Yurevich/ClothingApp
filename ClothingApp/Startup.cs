@@ -21,6 +21,11 @@ namespace ClothingApp
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IWeatherService>(ioc =>
+            {
+                return new WeatherService(Configuration.GetValue<string>("Token"));
+            });
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -28,7 +33,6 @@ namespace ClothingApp
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddScoped<IWeatherService, WeatherService>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
