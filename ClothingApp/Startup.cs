@@ -1,3 +1,4 @@
+using ClothingApp.Core.Services.WeatherService;
 using ClothingApp.Data;
 using ClothingApp.Models;
 using Microsoft.AspNetCore.Builder;
@@ -21,6 +22,11 @@ namespace ClothingApp
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IWeatherService>(ioc =>
+            {
+                return new WeatherService(Configuration.GetValue<string>("Token"));
+            });
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
