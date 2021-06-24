@@ -1,4 +1,4 @@
-﻿using ClothingApp.Data.Common.Models;
+using ClothingApp.Data.Common.Models;
 using Dadata;
 using Newtonsoft.Json.Linq;
 using System;
@@ -12,9 +12,11 @@ namespace ClothingApp.Core.Services.WeatherService
 {
     public class WeatherService : IWeatherService
     {
-        public WeatherService()
+        private string _token;
+
+        public WeatherService(string token)
         {
-            // Подгрузить токен
+            _token = token;
         }
 
         /// <summary>
