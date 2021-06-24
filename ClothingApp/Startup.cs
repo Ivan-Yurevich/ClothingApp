@@ -1,3 +1,4 @@
+using ClothingApp.Core.Services.WeatherService;
 using ClothingApp.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +28,7 @@ namespace ClothingApp
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddScoped<IWeatherService, WeatherService>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
