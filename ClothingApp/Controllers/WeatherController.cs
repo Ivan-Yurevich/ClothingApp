@@ -1,4 +1,5 @@
 ﻿using ClothingApp.Core.Services.WeatherService;
+using ClothingApp.Data.Common.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -23,8 +24,20 @@ namespace ClothingApp.Web.Controllers
         {
             var remoteIpAddress = HttpContext.Connection.RemoteIpAddress.ToString();
 
-            var city = await _weatherService.GetCity(""); // токен
+            var city = await _weatherService.GetCity(""); // ip adress
             var respone = _weatherService.GetWeatherForWeek("", city);
+
+            return Ok(respone);
+
+        }
+
+        [HttpGet("today")]
+        public async Task<ActionResult<Weather>> GetWeatherToday()
+        {
+            var remoteIpAddress = HttpContext.Connection.RemoteIpAddress.ToString();
+
+            var city = await _weatherService.GetCity(""); // ip adress
+            var respone = _weatherService.GetWeatherForToDay("", city);
 
             return Ok(respone);
 

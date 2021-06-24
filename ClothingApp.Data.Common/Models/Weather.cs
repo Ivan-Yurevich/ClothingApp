@@ -7,29 +7,35 @@ namespace ClothingApp.Data.Common.Models
     public class Weather
     {
         public int Id { get; set; }
+
         /// <summary>
-        /// температура
+        /// небо
         /// </summary>
-        public int Temperature { get; set; }
+        public string Sky { get; set; }
+        /// <summary>
+        /// комментарий к небу
+        /// </summary>
+        public string DescriptionSky { get; set; }
+        /// <summary>
+        /// температура максимальная
+        /// </summary>
+        public double TemperatureMax { get; set; }
+        /// <summary>
+        /// температура минимальная
+        /// </summary>
+        public double TemperatureMin { get; set; }
         /// <summary>
         /// скорость ветра
         /// </summary>
-        public double Wind { get; set; }
-        /// <summary>
-        /// снег
-        /// </summary>
-        public bool Snow { get; set; }
-        /// <summary>
-        /// дождь
-        /// </summary>
-        public bool Rain { get; set; }
-        /// <summary>
-        /// ясно
-        /// </summary>
-        public bool Clear { get; set; }
-        /// <summary>
-        /// пасмурно
-        /// </summary>
-        public bool Сloudy { get; set; }
+        public double WindSpeed { get; set; }
+
+        public Weather(string sky, string descriptionSky, double tempMax, double tempMin, double wind)
+        {
+            Sky = sky;
+            DescriptionSky = descriptionSky;
+            TemperatureMax = tempMax;
+            TemperatureMin = tempMin;
+            WindSpeed = wind;
+        }
     }
 }

@@ -11,5 +11,7 @@ namespace ClothingApp.Core.Services.WeatherService
         string GetWeatherForWeek(string remoteIpAddress, string address);
 
         Task<string> GetCity(string remoteIpAddress);
+
+        string GetWeatherForToDay(string remoteIpAddress, string address);
     }
 }
