@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace ClothingApp.Data.Common.Interfaces
 {
     public interface IBaseRepository<T> where T : class
     {
-
         /// <summary>Создание объекта</summary>
         Task CreateAsync(T item);
 
@@ -19,7 +15,12 @@ namespace ClothingApp.Data.Common.Interfaces
 
         /// <summary> Запись существует, проверка по Id </summary>
         Task<bool> ExistsAsync(int id);
-        /// <summary>Удаление объекта</summary>
+
+        /// <summary>
+        /// Удаление объекта</summary>
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         Task DeleteAsync(int id);
 
     }

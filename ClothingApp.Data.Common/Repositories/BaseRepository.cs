@@ -1,10 +1,6 @@
-﻿using ClothingApp.Data.Common.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using ClothingApp.Data.Common.Interfaces;
 
 namespace ClothingApp.Data.Common.Repositories
 {
@@ -29,9 +25,13 @@ namespace ClothingApp.Data.Common.Repositories
             var item = await dbSet.FindAsync(id);
 
             if (item == null)
+            {
                 return false;
 
+            }
+
             _context.Entry(item).State = EntityState.Detached;
+
             return true;
         }
 
@@ -51,9 +51,9 @@ namespace ClothingApp.Data.Common.Repositories
             var item = await dbSet.FindAsync(id);
 
             if (item != null)
+            {
                 _context.Remove(item);
+            }
         }
-
-
     }
 }

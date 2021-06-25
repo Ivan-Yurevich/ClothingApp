@@ -1,15 +1,9 @@
-﻿using ClothingApp.Data.Common.Models;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace ClothingApp.Data.Common
 {
     public class СlothesDbContext:DbContext
     {
-        public DbSet<Clothes> Clothes { get; set; }
-
         public СlothesDbContext()
         {
             Database.EnsureCreated();
