@@ -1,4 +1,5 @@
 ﻿using ClothingApp.Data.Common.Models;
+using ClothingApp.Data.Common.Models.WeatherModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,11 +7,17 @@ using System.Text;
 
 namespace ClothingApp.Data.Common
 {
-    public class СlothesDbContext:DbContext
+    public class DataContext : DbContext
     {
         public DbSet<Clothes> Clothes { get; set; }
 
-        public СlothesDbContext()
+        public DbSet<WeaerSetting> WeatherSettings { get; set; }
+
+        public DbSet<Rangerule> RangeRules { get; set; }
+
+        public DbSet<Booleanruule> BooleanRules { get; set; }
+
+        public DataContext()
         {
             Database.EnsureCreated();
         }

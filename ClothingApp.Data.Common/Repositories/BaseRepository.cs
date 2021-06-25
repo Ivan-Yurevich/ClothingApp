@@ -10,9 +10,9 @@ namespace ClothingApp.Data.Common.Repositories
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        private readonly СlothesDbContext _context;
+        private readonly DataContext _context;
 
-        public BaseRepository(СlothesDbContext context)
+        public BaseRepository(DataContext context)
         {
             _context = context;
         }
