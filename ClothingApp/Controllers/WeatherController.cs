@@ -23,12 +23,12 @@ namespace ClothingApp.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("fiveDays")]
-        public async Task<IActionResult> GetWeatherForWeek()
+        public IActionResult GetWeatherForWeek()
         {
             var remoteIpAddress = HttpContext.Connection.RemoteIpAddress.ToString();
 
-            var city = await _weatherService.GetCity(""); // ip adress
-            var respone = _weatherService.GetWeatherForFiveDays("", city);
+            string city = _weatherService.GetCityName(""); // ip adress
+            var respone = _weatherService.GetWeatherForFiveDays(city);
 
             return Ok(respone);
 
@@ -38,12 +38,12 @@ namespace ClothingApp.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("today")]
-        public async Task<ActionResult<Weather>> GetWeatherToday()
+        public ActionResult<Weather> GetWeatherToday()
         {
             var remoteIpAddress = HttpContext.Connection.RemoteIpAddress.ToString();
 
-            var city = await _weatherService.GetCity(""); // ip adress
-            var respone = _weatherService.GetWeatherForToDay("", city);
+            string city = _weatherService.GetCityName(""); // ip adress
+            var respone = _weatherService.GetWeatherForToDay(city);
 
             return Ok(respone);
 
@@ -53,12 +53,12 @@ namespace ClothingApp.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("tomorrow")]
-        public async Task<ActionResult<Weather>> GetWeatherTomorrow()
+        public ActionResult<Weather> GetWeatherTomorrow()
         {
             var remoteIpAddress = HttpContext.Connection.RemoteIpAddress.ToString();
 
-            var city = await _weatherService.GetCity(""); // ip adress
-            var respone = _weatherService.GetWeatherForTomorrow("", city);
+            string city = _weatherService.GetCityName(""); // ip adress
+            var respone = _weatherService.GetWeatherForTomorrow(city);
 
             return Ok(respone);
 

@@ -24,9 +24,9 @@ namespace ClothingApp.Core.Services.WeatherService
         /// Получение погоды на 5 дней (утро/день/вечер)
         /// </summary>
         /// <param name="remoteIpAddress"></param>
-        public List<Weather> GetWeatherForFiveDays(string remoteIpAddress, string address)
+        public List<Weather> GetWeatherForFiveDays(string address)
         {
-            string url = $"https://api.openweathermap.org/data/2.5/forecast?q=Самара&units=metric&appid=90b476eb5559e5ee382e6a79ac19c8d0&";
+            string url = $"https://api.openweathermap.org/data/2.5/forecast?q={address}&units=metric&appid=90b476eb5559e5ee382e6a79ac19c8d0&";
             string result = "";
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
             req.Method = "GET";
@@ -125,15 +125,25 @@ namespace ClothingApp.Core.Services.WeatherService
             return result.location.value;
         }
         /// <summary>
+        /// получение названия города
+        /// </summary>
+        public string GetCityName(string remoteIpAddress)
+        {
+            string cityName = GetCity(remoteIpAddress).Result;
+            cityName = cityName.Substring(2);
+
+            return cityName;
+        }
+        /// <summary>
         /// получение погоды на сегодня (утро/день/вечер)
         /// </summary>
-        public List<Weather> GetWeatherForToDay(string remoteIpAddress, string address)
+        public List<Weather> GetWeatherForToDay(string address)
         {
             List<Weather> toDayWeather = new List<Weather>();
 
-            toDayWeather.Add(GetWeatherForFiveDays(remoteIpAddress, address).ElementAt(0));
-            toDayWeather.Add(GetWeatherForFiveDays(remoteIpAddress, address).ElementAt(1));
-            toDayWeather.Add(GetWeatherForFiveDays(remoteIpAddress, address).ElementAt(2));
+            toDayWeather.Add(GetWeatherForFiveDays(address).ElementAt(0));
+            toDayWeather.Add(GetWeatherForFiveDays(address).ElementAt(1));
+            toDayWeather.Add(GetWeatherForFiveDays(address).ElementAt(2));
 
             return toDayWeather;
 
@@ -141,13 +151,13 @@ namespace ClothingApp.Core.Services.WeatherService
         /// <summary>
         /// получение погоды на завтра (утро/день/вечер)
         /// </summary>
-        public List<Weather> GetWeatherForTomorrow(string remoteIpAddress, string address)
+        public List<Weather> GetWeatherForTomorrow(string address)
         {
             List<Weather> tomorrow = new List<Weather>();
 
-            tomorrow.Add(GetWeatherForFiveDays(remoteIpAddress, address).ElementAt(3));
-            tomorrow.Add(GetWeatherForFiveDays(remoteIpAddress, address).ElementAt(4));
-            tomorrow.Add(GetWeatherForFiveDays(remoteIpAddress, address).ElementAt(5));
+            tomorrow.Add(GetWeatherForFiveDays(address).ElementAt(3));
+            tomorrow.Add(GetWeatherForFiveDays(address).ElementAt(4));
+            tomorrow.Add(GetWeatherForFiveDays(address).ElementAt(5));
 
             return tomorrow;
 
