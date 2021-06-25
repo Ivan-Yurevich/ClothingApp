@@ -1,13 +1,14 @@
-using ClothingApp.Data.Common.Models;
 using Dadata;
-using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
+using System.Linq;
+using System.Net.Http;
+using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using ClothingApp.Data.Common.Models;
 
 namespace ClothingApp.Core.Services.WeatherService
 {
@@ -27,11 +28,14 @@ namespace ClothingApp.Core.Services.WeatherService
         public List<Weather> GetWeatherForFiveDays(string address)
         {
             string url = $"https://api.openweathermap.org/data/2.5/forecast?q={address}&units=metric&appid=90b476eb5559e5ee382e6a79ac19c8d0&";
-            string result = "";
+            string result = string.Empty;
+
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
-            req.Method = "GET";
+            req.Method = HttpMethod.Get.ToString();
+
             req.UserAgent = "SimpleHostClient";
             req.ContentType = "application/x-www-form-urlencoded";
+            
             HttpWebResponse res = (HttpWebResponse)req.GetResponse();
             using (StreamReader reader = new StreamReader(res.GetResponseStream(), Encoding.UTF8))
             {
@@ -50,8 +54,8 @@ namespace ClothingApp.Core.Services.WeatherService
 
             }
 
-            string sky = "";// небо (ясно/облачно и тд)
-            string descriptionSky = "";// комментарий (пасмурно,небольшой дождь и тд)
+            string sky = string.Empty;// небо (ясно/облачно и тд)
+            string descriptionSky = string.Empty;// комментарий (пасмурно,небольшой дождь и тд)
             double tempMax = 0; //температура
             double tempMin = 0; //температура
             double wind = 0; //скорость ветра
@@ -64,6 +68,7 @@ namespace ClothingApp.Core.Services.WeatherService
 
             //преобразуем JSON словарь с сайта в список объектов погоды
             var massiv = JArray.Parse(array);
+
             for (int i = 0; i < massiv.Count; i++)
             {
                 dynamic objMass = massiv[i];
@@ -72,6 +77,7 @@ namespace ClothingApp.Core.Services.WeatherService
                     sky = item.main;
                     descriptionSky = item.description;
                 }
+
                 foreach (JProperty rate in objMass["main"])
                 {
                     if (rate.Name == "temp_max")
@@ -83,6 +89,7 @@ namespace ClothingApp.Core.Services.WeatherService
                         tempMin = Convert.ToDouble(rate.Value);
                     }
                 }
+
                 foreach (JProperty rate in objMass["wind"])
                 {
                     if (rate.Name == "speed")

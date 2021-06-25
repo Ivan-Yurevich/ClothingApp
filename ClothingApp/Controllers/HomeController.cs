@@ -1,12 +1,8 @@
-﻿using ClothingApp.Core.Services.WeatherService;
-using ClothingApp.Models;
+﻿using ClothingApp.Models;
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+using ClothingApp.Core.Services.WeatherService;
 
 namespace ClothingApp.Controllers
 {
@@ -23,10 +19,9 @@ namespace ClothingApp.Controllers
 
         public IActionResult Index()
         {
-            var x = HttpContext.Connection.RemoteIpAddress;
-            _weatherService.GetWeatherForWeek(x.ToString(), "");
             return View();
         }
+
         [HttpGet]
         public string GetName()
         {
