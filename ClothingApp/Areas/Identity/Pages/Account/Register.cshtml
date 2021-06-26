@@ -32,11 +32,11 @@
             <div class="form-group">
 
                 <label asp-for="Input.City"></label>
-                <label class="select" style="width:100%;" asp-for="Input.City">
+                @*<label class="select" style="width:100%;" asp-for="Input.City">@Html.DropDownList("e1", CityList.GetCities(), new { @class = "form-control" })</label>*@
 
-                    @Html.DropDownList("e1", CityList.GetCities(), new { @class = "form-control" })
+                <input asp-for="Input.City" class="form-control" />
+                <span asp-validation-for="Input.City" class="text-danger"></span>
 
-                </label>
             </div>
 
             <div class="form-group">
