@@ -1,17 +1,19 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+using ClothingApp.Data.Common.Models;
 
 namespace ClothingApp.Core.Services.WeatherService
 {
     public interface IWeatherService
     {
-        string GetWeatherForWeek(string remoteIpAddress, string address);
+        List<Weather> GetWeatherForFiveDays(string address);
 
         Task<string> GetCity(string remoteIpAddress);
-
-        string GetWeatherForToDay(string remoteIpAddress, string address);
+        
+        List<Weather> GetWeatherForToDay(string address);
+        
+        string GetCityName(string remoteIpAddress);
+        
+        List<Weather> GetWeatherForTomorrow(string address);
     }
 }

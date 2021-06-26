@@ -1,13 +1,13 @@
-using ClothingApp.Core.Services.WeatherService;
 using ClothingApp.Data;
 using ClothingApp.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using ClothingApp.Core.Services.WeatherService;
 
 namespace ClothingApp
 {
