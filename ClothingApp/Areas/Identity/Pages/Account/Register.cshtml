@@ -1,10 +1,16 @@
 ﻿@page
 @model RegisterModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Регистрация";
 }
 
 <h1>@ViewData["Title"]</h1>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.js-example-basic-single').select2();
+    });
+</script>
 
 <div class="row">
     <div class="col-md-4">
@@ -22,16 +28,23 @@
                 <input asp-for="Input.UserName" class="form-control" />
                 <span asp-validation-for="Input.UserName" class="text-danger"></span>
             </div>
+
+            <div class="form-group">
+
+                <label asp-for="Input.City"></label>
+                <label class="select" style="width:100%;" asp-for="Input.City">
+
+                    @Html.DropDownList("e1", CityList.GetCities(), new { @class = "form-control" })
+
+                </label>
+            </div>
+
             <div class="form-group">
                 <label asp-for="Input.Gender"></label>
                 <select class="form-control" asp-for="Input.Gender" asp-items="Html.GetEnumSelectList<UserGender>()">
                 </select>
             </div>
-            <div class="form-group">
-                <label asp-for="Input.City"></label>
-                <input asp-for="Input.City" class="form-control" />
-                <span asp-validation-for="Input.City" class="text-danger"></span>
-            </div>
+
             <div class="form-group">
                 <label asp-for="Input.PhoneNumber"></label>
                 <input asp-for="Input.PhoneNumber" class="form-control" />
@@ -84,4 +97,17 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function () { $("#FromJson").select2(); });
+    </script>
+
+    <link href="select2.css" rel="stylesheet" />
+    <script src="select2.js"></script>
+    <script>
+        $(document).ready(function () { $("#e1").select2(); });
+    </script>
 }

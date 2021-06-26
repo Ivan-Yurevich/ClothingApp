@@ -48,30 +48,30 @@ namespace ClothingApp.Web.Areas.Identity.Pages.Account
         {
             [Required]
             [EmailAddress]
-            [Display(Name = "Email")]
+            [Display(Name = "Email*")]
             public string Email { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Пароль")]
+            [Display(Name = "Пароль*")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Подтверждение пароля")]
+            [Display(Name = "Подтверждение пароля*")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
             [Required]
-            [Display(Name = "Город")]
+            [Display(Name = "Город*")]
             public string City { get; set; }
 
             [Required]
-            [Display(Name = "Имя пользователя")]
+            [Display(Name = "Имя пользователя*")]
             public string UserName { get; set; }
 
             [Required]
-            [Display(Name = "Пол")]
+            [Display(Name = "Пол*")]
             public UserGender Gender { get; set; }
 
             [Required]
