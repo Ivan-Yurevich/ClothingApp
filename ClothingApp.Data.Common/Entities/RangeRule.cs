@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ClothingApp.Data.Common.Entities
 {
-    public class RengeRule : EntityBase<long>
+    public class RangeRule : EntityBase<long>
     {
         /// <summary>
         /// Минимальное значение температуры
@@ -23,5 +23,7 @@ namespace ClothingApp.Data.Common.Entities
             /// </summary>
             Temperature = 1
         }
+
+        public ICollection<WeatherSetting> WeatherSettings { get; set; }
     }
 }
