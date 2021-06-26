@@ -16,22 +16,53 @@
                 <button class="btn" type="submit"></button>
             </div>
             <div class="menu-choice">
-                <a href="" class="today">�������</a>
-                <a href="" class="tomorrow">������</a>
-                <a href="" class="week">������</a>
+                <a href="" class="today">Погода на сегодня</a>
+                @*<a href="" class="tomorrow">������</a>
+                    <a href="" class="week">������</a>*@
             </div>
-            <div class="gender">
-                <div class="gender-item man">
-                    <input id="fid-1" type="radio" name="radio" value="off" checked>
-                    <label for="fid-1">�</label>
-                </div>
-                <div class="gender-item woman">
-                    <input id="fid-2" type="radio" name="radio" value="on">
-                    <label for="fid-2">�</label>
-                </div>
-            </div>
+            @*<div class="gender">
+                    <div class="gender-item man">
+                        <input id="fid-1" type="radio" name="radio" value="off" checked>
+                        <label for="fid-1">�</label>
+                    </div>
+                    <div class="gender-item woman">
+                        <input id="fid-2" type="radio" name="radio" value="on">
+                        <label for="fid-2">�</label>
+                    </div>
+                </div>*@
         </div>
-        <div class="weather-window">
+    </div>
+    <p>Погода на сегодня</p>
+    <table>
+        <tr>
+            <td><p>Небо</p></td>
+            <td><p>Комментарий к небу</p></td>
+            <td></td>
+        </tr>
+        @foreach (var b in ViewBag.GetWeatherToday)
+        {
+            <tr>
+                <td><p>@b.Sky</p></td>
+                <td><p>@b.DescriptionSky</p></td>
+            </tr>
+        }
+    </table>
+    <p>Погода на завтра</p>
+    <table>
+        <tr>
+            <td><p>Небо</p></td>
+            <td><p>Комментарий к небу</p></td>
+            <td></td>
+        </tr>
+        @foreach (var b in ViewBag.WeatherTomorrow)
+        {
+            <tr>
+                <td><p>@b.Sky</p></td>
+                <td><p>@b.DescriptionSky</p></td>
+            </tr>
+        }
+    </table>
+    @*<div class="weather-window">
             <div class="weather-headlines">
                 <table class="headlines">
                     <tr>
@@ -73,29 +104,29 @@
                         <td class="humidity-num">70%</td>
                         <td class="wind-num">4,3</td>
                         <td class="feels-like-num">+10</td>
-                    </tr>                   
+                    </tr>
                 </table>
             </div>
-        </div>
-    </div>
-    <div class="clothes">
+        </div>*@
+    @*</div>*@
+    <!--<div class="clothes">
         <div class="icons">
-            <div class="outwear">
-                @*<img class="outwear-img" src="/icons/jacket.jpg">*@
-            </div>
-            <div class="body-clother">
-                @*<img class="body-img" src="/icons/t-short.jpg">*@
-            </div>
-            <div class="legs-clotger">
-                @*<img class="legs-img" src="/icons/trousers.jpg">*@
-            </div>
-            <div class="shoes">
-                @*<img src="/icons/sneakers.jpg">*@
-            </div>
-            <div class="accessory">
-                @*<img src="/icons/umbrella.jpg">*@
-            </div>
+            <div class="outwear">-->
+    @*<img class="outwear-img" src="/icons/jacket.jpg">*@
+    <!--</div>
+    <div class="body-clother">-->
+    @*<img class="body-img" src="/icons/t-short.jpg">*@
+    <!--</div>
+    <div class="legs-clotger">-->
+    @*<img class="legs-img" src="/icons/trousers.jpg">*@
+    <!--</div>
+    <div class="shoes">-->
+    @*<img src="/icons/sneakers.jpg">*@
+    <!--</div>
+    <div class="accessory">-->
+    @*<img src="/icons/umbrella.jpg">*@
+    <!--</div>
         </div>
-    </div>
+    </div>-->
 </body>
 </html>
