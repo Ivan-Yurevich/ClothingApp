@@ -30,13 +30,9 @@
             </div>
 
             <div class="form-group">
-
                 <label asp-for="Input.City"></label>
-                <label class="select" style="width:100%;" asp-for="Input.City">
-
-                    @Html.DropDownList("e1", CityList.GetCities(), new { @class = "form-control" })
-
-                </label>
+                <select class="js-example-basic-single" asp-for="Input.City" asp-items="CityList.GetCities()" style="width:100%;">
+                </select>
             </div>
 
             <div class="form-group">
@@ -110,4 +106,9 @@
     <script>
         $(document).ready(function () { $("#e1").select2(); });
     </script>
+
+<script>
+    $(document).ready(function () {
+        $('.js-example-basic-single').select2();
+    });</script>
 }
