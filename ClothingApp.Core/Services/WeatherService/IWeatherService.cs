@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
+using ClothingApp.Data.Common.Models;
 using System.Threading.Tasks;
 
 namespace ClothingApp.Core.Services.WeatherService
@@ -12,6 +13,6 @@ namespace ClothingApp.Core.Services.WeatherService
 
         Task<string> GetCity(string remoteIpAddress);
 
-        string GetWeatherForToDay(string remoteIpAddress, string address);
+        Weather GetWeatherForToDay(string remoteIpAddress, string address);
     }
 }

@@ -19,11 +19,11 @@ namespace ClothingApp.Models
     public class CityList
     {
         public static SelectList GetCities() {
-        List<SelectListItem> Genderitems = new List<SelectListItem>();
-        
-        Genderitems.Add(new SelectListItem() { Text = "Москва", Value = "Moscow" });
-        Genderitems.Add(new SelectListItem() { Text = "Санкт-Петербург", Value = "Saint Petersburg" });
-        return new SelectList(Genderitems, "Value", "Text");
+        List<SelectListItem> CityItems = new List<SelectListItem>();
+
+        CityItems.Add(new SelectListItem() { Text = "Москва", Value = "Moscow" });
+        CityItems.Add(new SelectListItem() { Text = "Санкт-Петербург", Value = "Saint Petersburg" });
+        return new SelectList(CityItems, "Value", "Text");
         }
     }
 

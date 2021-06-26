@@ -25,6 +25,7 @@ namespace ClothingApp.Core.Services.WeatherService
         /// <param name="remoteIpAddress"></param>
         public string GetWeatherForWeek(string remoteIpAddress, string address)
         {
+            return null;
             string url = $"https://pro.openweathermap.org/data/2.5/forecast/climate?id={address}&units=metric&appid=90b476eb5559e5ee382e6a79ac19c8d0&"; 
 
             HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
@@ -56,7 +57,7 @@ namespace ClothingApp.Core.Services.WeatherService
         /// <summary>
         /// получение погоды на сегодня 
         /// </summary>
-        public Weather GetWeatherForToday(string remoteIpAddress, string address)
+        public Weather GetWeatherForToDay(string remoteIpAddress, string address)
         {
             string site = "http://api.openweathermap.org/data/2.5/weather?q={address}&lang=ru&units=metric&appid=90b476eb5559e5ee382e6a79ac19c8d0& ";
             string result = "";
