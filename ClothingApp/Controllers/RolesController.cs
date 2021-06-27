@@ -80,7 +80,8 @@ namespace ClothingApp.Web.Controllers
                     UserRoles = userRoles,
                     AllRoles = allRoles
                 };
-                return View(model);
+                ViewBag.EditRole = model;
+                return View("~/Areas/Identity/Pages/Roles/Edit.cshtml");
             }
 
             return NotFound();

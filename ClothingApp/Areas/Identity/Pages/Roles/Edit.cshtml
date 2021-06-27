@@ -1,15 +1,15 @@
-﻿@using Microsoft.AspNetCore.Identity
-@model ClothingApp.Web.Areas.Identity.ChangeRoleViewModel
-<h2>Изменение ролей для пользователя @Model.UserEmail</h2>
+﻿
+<h2>Изменение ролей для пользователя @ViewBag.EditRole.UserEmail</h2>
 
 <form asp-action="Edit" method="post">
-    <input type="hidden" name="userId" value="@Model.UserId" />
+    <input type="hidden" name="userId" value=@ViewBag.EditRole.UserId />
     <div class="form-group">
-        @foreach (IdentityRole role in Model.AllRoles)
+        @foreach (IdentityRole role in ViewBag.EditRole.AllRoles)
         {
             <input type="checkbox" name="roles" value="@role.Name"
-                   @(Model.UserRoles.Contains(role.Name) ? "checked=\"checked\"" : "") />@role.Name <br />
+                   @(ViewBag.EditRole.UserRoles.Contains(role.Name) ? "checked=\"checked\"" : "") />@role.Name <br />
             }
     </div>
+    
     <button type="submit" class="btn btn-primary">Сохранить</button>
 </form>
