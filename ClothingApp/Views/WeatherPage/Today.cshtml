@@ -1,0 +1,62 @@
+
+<div class="weather">
+    <div class="weather-window">
+        <div class="weather-headlines">
+            <table class="headlines">
+                <tr>
+                    <td class="date">25</td>
+                    <td class="month">июня,<br>сегодня</td>
+                    <td class="char"></td>                                       
+                    <td class="wind">Ветер,<br>м/с</td>                    
+                </tr>
+            </table>
+            <div class="advice">
+                <b>Совет:</b><br>
+            </div>
+        </div>
+        <div class="hourly-weather">
+            <table class="table-weather">
+                @foreach (var b in ViewBag.GetWeatherToday)
+                {
+                    <tr>
+                        @if (b == ViewBag.GetWeatherToday[0])
+                        {
+                            <td class="temp">Утром<br><b>@b.TemperatureMin ... @b.TemperatureMax</b></td>
+                        }
+                        else if (b == ViewBag.GetWeatherToday[1])
+                        {
+                            <td class="temp">Днем<br><b>@b.TemperatureMin ... @b.TemperatureMax</b></td>
+                        }
+                        else
+                        {
+                            <td class="temp">Вечером<br><b>@b.TemperatureMin ... @b.TemperatureMax</b></td>
+                        }
+
+                        <td class="characteristic">@b.Sky</td>
+                        <td class="wind-num">@b.WindSpeed</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+    
+    <!--<div class="clothes">
+        <div class="icons">
+            <div class="outwear">-->
+    @*<img class="outwear-img" src="/icons/jacket.jpg">*@
+    <!--</div>
+    <div class="body-clother">-->
+    @*<img class="body-img" src="/icons/t-short.jpg">*@
+    <!--</div>
+    <div class="legs-clotger">-->
+    @*<img class="legs-img" src="/icons/trousers.jpg">*@
+    <!--</div>
+    <div class="shoes">-->
+    @*<img src="/icons/sneakers.jpg">*@
+    <!--</div>
+    <div class="accessory">-->
+    @*<img src="/icons/umbrella.jpg">*@
+    <!--</div>
+        </div>
+    </div>-->

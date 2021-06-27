@@ -62,11 +62,15 @@ namespace ClothingApp.Web.Controllers
 
         }
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Today()
+        {           
+            ViewBag.GetWeatherToday = GetWeatherToday();
+            return View("~/Views/WeatherPage/Today.cshtml");
+        }
+        public ActionResult Tomorrow()
         {
             ViewBag.WeatherTomorrow = GetWeatherTomorrow();
-            ViewBag.GetWeatherToday = GetWeatherToday();
-            return View("~/Views/StartPage/index.cshtml");
+            return View("~/Views/WeatherPage/Tomorrow.cshtml");
         }
     }
 }

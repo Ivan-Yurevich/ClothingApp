@@ -1,0 +1,41 @@
+﻿<div class="weather">
+    <div class="weather-window">
+        <div class="weather-headlines">
+            <table class="headlines">
+                <tr>
+                    <td class="date">27</td>
+                    <td class="month">июня,<br>завтра</td>
+                    <td class="char"></td>
+                    <td class="wind">Ветер,<br>м/с</td>
+                </tr>
+            </table>
+            <div class="advice">
+                <b>Совет:</b><br>
+            </div>
+        </div>
+        <div class="hourly-weather">
+            <table class="table-weather">
+                @foreach (var b in ViewBag.WeatherTomorrow)
+                {
+                    <tr>
+                        @if (b == ViewBag.WeatherTomorrow[0])
+                        {
+                            <td class="temp">Утром<br><b>@b.TemperatureMin ... @b.TemperatureMax</b></td>
+                        }
+                        else if (b == ViewBag.WeatherTomorrow[1])
+                        {
+                            <td class="temp">Днем<br><b>@b.TemperatureMin ... @b.TemperatureMax</b></td>
+                        }
+                        else
+                        {
+                            <td class="temp">Вечером<br><b>@b.TemperatureMin ... @b.TemperatureMax</b></td>
+                        }
+
+                        <td class="characteristic">@b.Sky</td>
+                        <td class="wind-num">@b.WindSpeed</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
