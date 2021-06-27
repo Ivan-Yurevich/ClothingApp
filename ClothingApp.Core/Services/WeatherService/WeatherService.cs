@@ -20,7 +20,7 @@ namespace ClothingApp.Core.Services.WeatherService
         {
             _token = token;
         }
-
+        
         /// <summary>
         /// Получение погоды на 5 дней (утро/день/вечер)
         /// </summary>
@@ -59,6 +59,7 @@ namespace ClothingApp.Core.Services.WeatherService
             double tempMax = 0; //температура
             double tempMin = 0; //температура
             double wind = 0; //скорость ветра
+            DateTime dt;
 
             //вся погода на пять дней с шагом в 3 часа в сутки,которая пришла с сайта
             List<Weather> allWeather = new List<Weather>();
@@ -78,6 +79,8 @@ namespace ClothingApp.Core.Services.WeatherService
                     descriptionSky = item.description;
                 }
 
+                dt = DateTime.Parse(objMass["dt_txt"].Value);
+                
                 foreach (JProperty rate in objMass["main"])
                 {
                     if (rate.Name == "temp_max")
@@ -98,26 +101,14 @@ namespace ClothingApp.Core.Services.WeatherService
                     }
 
                 }
-                Weather weather = new Weather(sky, descriptionSky, tempMax, tempMin, wind);
+                Weather weather = new Weather(sky, descriptionSky, tempMax, tempMin, wind, dt);                
                 allWeather.Add(weather);
             }
 
-            сurrentWeather.Add(allWeather.ElementAt(2));
-            сurrentWeather.Add(allWeather.ElementAt(4));
-            сurrentWeather.Add(allWeather.ElementAt(6));
-            сurrentWeather.Add(allWeather.ElementAt(10));
-            сurrentWeather.Add(allWeather.ElementAt(12));
-            сurrentWeather.Add(allWeather.ElementAt(14));
-            сurrentWeather.Add(allWeather.ElementAt(18));
-            сurrentWeather.Add(allWeather.ElementAt(20));
-            сurrentWeather.Add(allWeather.ElementAt(22));
-            сurrentWeather.Add(allWeather.ElementAt(26));
-            сurrentWeather.Add(allWeather.ElementAt(28));
-            сurrentWeather.Add(allWeather.ElementAt(30));
-            сurrentWeather.Add(allWeather.ElementAt(34));
-            сurrentWeather.Add(allWeather.ElementAt(36));
-            сurrentWeather.Add(allWeather.ElementAt(38));
-
+            сurrentWeather = allWeather.Where(x => x.PartOfDay.HasValue)
+                .GroupBy(x => new { x.PartOfDay.Value, x.DateTime.Date }, (y, z) => z.OrderBy(j => j.DateTime.Date).First())
+                .Select(x => new Weather(x.Sky, x.DescriptionSky, x.TemperatureMax, x.TemperatureMin, x.WindSpeed, x.DateTime)).ToList();
+            
             return сurrentWeather;
         }
 
@@ -148,10 +139,9 @@ namespace ClothingApp.Core.Services.WeatherService
         {
             List<Weather> toDayWeather = new List<Weather>();
 
-            toDayWeather.Add(GetWeatherForFiveDays(address).ElementAt(0));
-            toDayWeather.Add(GetWeatherForFiveDays(address).ElementAt(1));
-            toDayWeather.Add(GetWeatherForFiveDays(address).ElementAt(2));
-
+            toDayWeather.AddRange(GetWeatherForFiveDays(address)
+                        .Where(x => x.DateTime.ToUniversalTime().Date == DateTime.UtcNow.Date));
+            
             return toDayWeather;
 
         }
@@ -161,11 +151,10 @@ namespace ClothingApp.Core.Services.WeatherService
         public List<Weather> GetWeatherForTomorrow(string address)
         {
             List<Weather> tomorrow = new List<Weather>();
-
-            tomorrow.Add(GetWeatherForFiveDays(address).ElementAt(3));
-            tomorrow.Add(GetWeatherForFiveDays(address).ElementAt(4));
-            tomorrow.Add(GetWeatherForFiveDays(address).ElementAt(5));
-
+            
+            tomorrow.AddRange(GetWeatherForFiveDays(address)
+                    .Where(x => x.DateTime.ToUniversalTime().Date == DateTime.UtcNow.AddDays(1).Date));
+            
             return tomorrow;
 
         }
