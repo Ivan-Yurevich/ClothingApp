@@ -2,12 +2,6 @@
 
 namespace ClothingApp.Data.Common.Models
 {
-    public enum PartOfDay
-    {
-        Morning,
-        Daytime,
-        Evening
-    }
     public class Weather
     {
         public int Id { get; set; }
