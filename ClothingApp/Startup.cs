@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ClothingApp.Core.Services.WeatherService;
+using ClothingApp.Web.Areas.Identity;
 
 namespace ClothingApp
 {
@@ -32,7 +33,10 @@ namespace ClothingApp
                     Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+
+            //services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+            //.AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -54,6 +58,8 @@ namespace ClothingApp
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            Seed.Initialize(app.ApplicationServices);
 
             app.UseAuthentication();
             app.UseAuthorization();
