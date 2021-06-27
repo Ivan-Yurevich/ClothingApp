@@ -86,6 +86,11 @@ namespace ClothingApp.Web.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+                    //если зашел админ, то он перенаправляется на страницу админа
+                    ApplicationUser user = await _userManager.FindByNameAsync(Input.UserName);
+                    var userRoles = await _userManager.GetRolesAsync(user);
+                    if (userRoles.Contains("admin")) return RedirectToRoute(new { controller = "Roles", action = "Index" });//нужно будет изменить путь, когда появится основная страница админа
+
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
