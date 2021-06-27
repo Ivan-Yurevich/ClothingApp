@@ -17,13 +17,13 @@ namespace ClothingApp.Web.Areas.Identity
             {
                 await roleManager.CreateAsync(new IdentityRole("admin"));
             }
-            if (await roleManager.FindByNameAsync("employee") == null)
+            if (await roleManager.FindByNameAsync("user") == null)
             {
-                await roleManager.CreateAsync(new IdentityRole("employee"));
+                await roleManager.CreateAsync(new IdentityRole("user"));
             }
             if (await userManager.FindByNameAsync(adminEmail) == null)
             {
-                ApplicationUser admin = new ApplicationUser { Email = adminEmail, UserName = adminEmail };
+                ApplicationUser admin = new ApplicationUser { Email = adminEmail, UserName = adminEmail, EmailConfirmed = true };
                 IdentityResult result = await userManager.CreateAsync(admin, password);
                 if (result.Succeeded)
                 {
