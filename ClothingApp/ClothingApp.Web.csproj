@@ -5,13 +5,9 @@
     <UserSecretsId>aspnet-ClothingApp-5C7CFEF1-CF44-40CA-B47E-9F5A252F7CDF</UserSecretsId>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Data\Migrations\20210624102124_Extend_IdentityUser.cs" />
-    <Compile Remove="Data\Migrations\20210624102124_Extend_IdentityUser.Designer.cs" />
-    <Compile Remove="Data\Migrations\20210624102431_Extend_IdentityUser.cs" />
-    <Compile Remove="Data\Migrations\20210624102431_Extend_IdentityUser.Designer.cs" />
-    <Compile Remove="Data\Migrations\20210624102544_Extend_IdentityUser.cs" />
-    <Compile Remove="Data\Migrations\20210624102544_Extend_IdentityUser.Designer.cs" />
+  <ItemGroup>	  
+    <Compile Remove="Data\Migrations\20210627175602_Extend_City.cs" />
+    <Compile Remove="Data\Migrations\20210627175602_Extend_City.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +21,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="OfficeOpenXml.Core.ExcelPackage" Version="1.0.0" />
+    <PackageReference Include="OfficeOpenXml.Extends" Version="1.0.6" />
     <PackageReference Include="Select2.js" Version="4.0.13" />
   </ItemGroup>
 

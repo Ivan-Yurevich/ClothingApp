@@ -74,7 +74,7 @@ namespace ClothingApp.Web.Areas.Identity.Pages.Account
             [Display(Name = "Пол*")]
             public UserGender Gender { get; set; }
 
-            [Required]
+
             [DataType(DataType.PhoneNumber, ErrorMessage = "Provided phone number not valid")]
             [RegularExpression(@"^\+?\d?[. ]?([0-9]{3})?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
             [Display(Name = "Номер телефона")]

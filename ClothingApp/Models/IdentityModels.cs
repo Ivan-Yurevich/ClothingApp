@@ -2,9 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ClothingApp.Data.Common.Models;
+using ClothingApp.Data;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClothingApp.Models
 {
@@ -14,17 +18,6 @@ namespace ClothingApp.Models
         Female = 1,
         [Display(Name = "Мужской")]
         Male = 2
-    }
-
-    public class CityList
-    {
-        public static SelectList GetCities() {
-        List<SelectListItem> Genderitems = new List<SelectListItem>();
-        
-        Genderitems.Add(new SelectListItem() { Text = "Москва", Value = "Moscow" });
-        Genderitems.Add(new SelectListItem() { Text = "Санкт-Петербург", Value = "Saint Petersburg" });
-        return new SelectList(Genderitems, "Value", "Text");
-        }
     }
 
     public class ApplicationUser : IdentityUser
