@@ -1,10 +1,7 @@
-﻿using ClothingApp.Models;
-
-@model IEnumerable<ApplicationUser>
-
+﻿
 <h2>Список пользователей</h2>
 <table class="table">
-    @foreach (var user in Model)
+    @foreach (var user in ViewBag.Users)
     {
         <tr>
             <td>@user.Email</td>
