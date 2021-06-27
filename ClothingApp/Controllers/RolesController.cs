@@ -53,7 +53,10 @@ namespace ClothingApp.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult UserList() => View(_userManager.Users.ToList());
+        public IActionResult UserList()
+        {
+            return View("~/Areas/Identity/Pages/Roles/UserList.cshtml");
+        }
 
         public async Task<IActionResult> Edit(string userId)
         {

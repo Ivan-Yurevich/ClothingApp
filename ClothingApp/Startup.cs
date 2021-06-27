@@ -33,7 +33,7 @@ namespace ClothingApp
                     Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
             //services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
             //.AddEntityFrameworkStores<ApplicationDbContext>();
