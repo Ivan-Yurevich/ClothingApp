@@ -1,3 +1,4 @@
+@using ClothingApp.Data.Common.Models
 
 <div class="weather">
     <div class="weather-window">
@@ -16,24 +17,24 @@
         </div>
         <div class="hourly-weather">
             <table class="table-weather">
-                @foreach (var b in ViewBag.GetWeatherToday)
+                @foreach (var weather in ViewBag.GetWeatherToday)
                 {
                     <tr>
-                        @if (b == ViewBag.GetWeatherToday[0])
+                        @if (weather.PartOfDay == PartOfDay.Morning)
                         {
-                            <td class="temp">Утром<br><b>@b.TemperatureMin ... @b.TemperatureMax</b></td>
+                            <td class="temp">Утром<br><b>@weather.TemperatureMin ... @weather.TemperatureMax</b></td>
                         }
-                        else if (b == ViewBag.GetWeatherToday[1])
+                        else if (weather.PartOfDay == PartOfDay.Daytime)
                         {
-                            <td class="temp">Днем<br><b>@b.TemperatureMin ... @b.TemperatureMax</b></td>
+                            <td class="temp">Днем<br><b>@weather.TemperatureMin ... @weather.TemperatureMax</b></td>
                         }
                         else
                         {
-                            <td class="temp">Вечером<br><b>@b.TemperatureMin ... @b.TemperatureMax</b></td>
+                            <td class="temp">Вечером<br><b>@weather.TemperatureMin ... @weather.TemperatureMax</b></td>
                         }
 
-                        <td class="characteristic">@b.Sky</td>
-                        <td class="wind-num">@b.WindSpeed</td>
+                        <td class="characteristic">@weather.Sky</td>
+                        <td class="wind-num">@weather.WindSpeed</td>
                     </tr>
                 }
             </table>
