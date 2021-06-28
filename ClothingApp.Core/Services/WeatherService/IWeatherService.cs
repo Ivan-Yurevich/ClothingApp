@@ -10,7 +10,7 @@ namespace ClothingApp.Core.Services.WeatherService
 
         Task<string> GetCity(string remoteIpAddress);
         
-        List<Weather> GetWeatherForToDay(string address);
+        List<Weather> GetWeatherForToday(string address);
         
         string GetCityName(string remoteIpAddress);
         

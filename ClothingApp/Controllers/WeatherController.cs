@@ -18,14 +18,19 @@ namespace ClothingApp.Web.Controllers
         {
             _weatherService = weatherService;
         }
+
+        private string GetCityByIP()
+        {
+            var remoteIpAddress = HttpContext.Connection.RemoteIpAddress.ToString();
+
+            return _weatherService.GetCityName("46.0.40.18"); // ip adress
+        }
         /// <summary>
         /// погода на 5 дней
         /// </summary>
         public List<Weather> GetWeatherForWeek()
         {
-            var remoteIpAddress = HttpContext.Connection.RemoteIpAddress.ToString();
-
-            string city = _weatherService.GetCityName("46.0.40.18"); // ip adress
+            string city = GetCityByIP();
             var respone = _weatherService.GetWeatherForFiveDays(city);
 
             return respone;
@@ -37,10 +42,8 @@ namespace ClothingApp.Web.Controllers
         /// <returns></returns>
         public List<Weather> GetWeatherToday()
         {
-            var remoteIpAddress = HttpContext.Connection.RemoteIpAddress.ToString();
-
-            string city = _weatherService.GetCityName("46.0.40.18"); // ip adress
-            var respone = _weatherService.GetWeatherForToDay(city);
+            string city = GetCityByIP();
+            var respone = _weatherService.GetWeatherForToday(city);
 
             ViewBag.GetWeatherToday = respone;
             return respone;
@@ -53,9 +56,7 @@ namespace ClothingApp.Web.Controllers
         /// <returns></returns>
         public List<Weather> GetWeatherTomorrow()
         {
-            var remoteIpAddress = HttpContext.Connection.RemoteIpAddress.ToString();
-
-            string city = _weatherService.GetCityName("46.0.40.18"); // ip adress
+            string city = GetCityByIP();
             var respone = _weatherService.GetWeatherForTomorrow(city);           
 
             return respone;

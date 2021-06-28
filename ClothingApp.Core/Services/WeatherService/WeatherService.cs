@@ -20,12 +20,11 @@ namespace ClothingApp.Core.Services.WeatherService
         {
             _token = token;
         }
-        
+
         /// <summary>
-        /// Получение погоды на 5 дней (утро/день/вечер)
+        /// Получение погоды в виде JSON файла
         /// </summary>
-        /// <param name="remoteIpAddress"></param>
-        public List<Weather> GetWeatherForFiveDays(string address)
+        private string GetWeatherFromApi(string address)
         {
             string url = $"https://api.openweathermap.org/data/2.5/forecast?q={address}&units=metric&appid=90b476eb5559e5ee382e6a79ac19c8d0&";
             string result = string.Empty;
@@ -35,13 +34,20 @@ namespace ClothingApp.Core.Services.WeatherService
 
             req.UserAgent = "SimpleHostClient";
             req.ContentType = "application/x-www-form-urlencoded";
-            
+
             HttpWebResponse res = (HttpWebResponse)req.GetResponse();
             using (StreamReader reader = new StreamReader(res.GetResponseStream(), Encoding.UTF8))
             {
                 result = reader.ReadToEnd();
             }
-            //преобразуем JSON с сайта словарь в строку
+            return result;
+        }
+
+        /// <summary>
+        /// Преобразуем JSON с сайта словарь в строку
+        /// </summary>
+        private string ConvertJSONtoString(string result)
+        {
             JObject jObject = JObject.Parse(result);
             dynamic obj = jObject;
             string array = "";
@@ -51,8 +57,19 @@ namespace ClothingApp.Core.Services.WeatherService
                 {
                     array = rate.Value.ToString();
                 }
-
             }
+            return array;
+        }
+        /// <summary>
+        /// Получить всю погоду на пять дней с шагом в 3 часа в сутки
+        /// </summary>
+        public List<Weather> GetAllWeather(string address)
+        {
+            string result = GetWeatherFromApi(address);
+            string array = ConvertJSONtoString(result);
+
+            //вся погода на пять дней с шагом в 3 часа в сутки,которая пришла с сайта
+            List<Weather> allWeather = new List<Weather>();
 
             string sky = string.Empty;// небо (ясно/облачно и тд)
             string descriptionSky = string.Empty;// комментарий (пасмурно,небольшой дождь и тд)
@@ -60,12 +77,6 @@ namespace ClothingApp.Core.Services.WeatherService
             double tempMin = 0; //температура
             double wind = 0; //скорость ветра
             DateTime dt;
-
-            //вся погода на пять дней с шагом в 3 часа в сутки,которая пришла с сайта
-            List<Weather> allWeather = new List<Weather>();
-
-            //вся погода на пять дней с шагом утро/день/вечер
-            List<Weather> сurrentWeather = new List<Weather>();
 
             //преобразуем JSON словарь с сайта в список объектов погоды
             var massiv = JArray.Parse(array);
@@ -80,7 +91,7 @@ namespace ClothingApp.Core.Services.WeatherService
                 }
 
                 dt = DateTime.Parse(objMass["dt_txt"].Value);
-                
+
                 foreach (JProperty rate in objMass["main"])
                 {
                     if (rate.Name == "temp_max")
@@ -101,9 +112,22 @@ namespace ClothingApp.Core.Services.WeatherService
                     }
 
                 }
-                Weather weather = new Weather(sky, descriptionSky, tempMax, tempMin, wind, dt);                
+                Weather weather = new Weather(sky, descriptionSky, tempMax, tempMin, wind, dt);
                 allWeather.Add(weather);
             }
+            return allWeather;
+        }
+        /// <summary>
+        /// Получение погоды на 5 дней (утро/день/вечер)
+        /// </summary>
+        /// <param name="remoteIpAddress"></param>
+        public List<Weather> GetWeatherForFiveDays(string address)
+        {
+            //вся погода на пять дней с шагом в 3 часа в сутки,которая пришла с сайта
+            List<Weather> allWeather = GetAllWeather(address);
+
+            //вся погода на пять дней с шагом утро/день/вечер
+            List<Weather> сurrentWeather = new List<Weather>();
 
             сurrentWeather = allWeather.Where(x => x.PartOfDay.HasValue)
                 .GroupBy(x => new { x.PartOfDay.Value, x.DateTime.Date }, (y, z) => z.OrderBy(j => j.DateTime.Date).First())
@@ -111,7 +135,28 @@ namespace ClothingApp.Core.Services.WeatherService
             
             return сurrentWeather;
         }
+        public List<Weather> GetWeatherForToday(string address)
+        {
+            List<Weather> toDayWeather = new List<Weather>();
 
+            toDayWeather.AddRange(GetWeatherForFiveDays(address)
+                        .Where(x => x.DateTime.ToUniversalTime().Date == DateTime.UtcNow.Date));
+
+            return toDayWeather;
+        }
+        /// <summary>
+        /// получение погоды на завтра (утро/день/вечер)
+        /// </summary>
+        public List<Weather> GetWeatherForTomorrow(string address)
+        {
+            List<Weather> tomorrow = new List<Weather>();
+
+            tomorrow.AddRange(GetWeatherForFiveDays(address)
+                    .Where(x => x.DateTime.ToUniversalTime().Date == DateTime.UtcNow.AddDays(1).Date));
+
+            return tomorrow;
+
+        }
         /// <summary>
         /// Определение города
         /// </summary>
@@ -135,28 +180,6 @@ namespace ClothingApp.Core.Services.WeatherService
         /// <summary>
         /// получение погоды на сегодня (утро/день/вечер)
         /// </summary>
-        public List<Weather> GetWeatherForToDay(string address)
-        {
-            List<Weather> toDayWeather = new List<Weather>();
-
-            toDayWeather.AddRange(GetWeatherForFiveDays(address)
-                        .Where(x => x.DateTime.ToUniversalTime().Date == DateTime.UtcNow.Date));
-            
-            return toDayWeather;
-
-        }
-        /// <summary>
-        /// получение погоды на завтра (утро/день/вечер)
-        /// </summary>
-        public List<Weather> GetWeatherForTomorrow(string address)
-        {
-            List<Weather> tomorrow = new List<Weather>();
-            
-            tomorrow.AddRange(GetWeatherForFiveDays(address)
-                    .Where(x => x.DateTime.ToUniversalTime().Date == DateTime.UtcNow.AddDays(1).Date));
-            
-            return tomorrow;
-
-        }
+        
     }
 }
