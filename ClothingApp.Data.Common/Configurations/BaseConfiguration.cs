@@ -20,7 +20,7 @@ namespace ClothingApp.Data.Common.Configurations
             builder.Property(x => x.Deleted)
                 .HasColumnType("datetime2(7)")
                 .HasColumnName("Deleted");
-       }
+        }
 
         protected abstract void ConfigureCustom(EntityTypeBuilder<TEntity> builder);
     }

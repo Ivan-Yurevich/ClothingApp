@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ClothingApp.Data.Common.Entities
 {
-    public class BooleanRule
+    public class BooleanRule : EntityBase<long>
     {
         /// <summary>
         /// Существует правило или нет
@@ -28,5 +28,7 @@ namespace ClothingApp.Data.Common.Entities
             /// </summary>
             PresenceOfSnow = 3
         }
+
+        public ICollection<WeatherSetting> WeatherSettings { get; set; }
     }
 }

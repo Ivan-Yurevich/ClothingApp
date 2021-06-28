@@ -13,5 +13,7 @@ namespace ClothingApp.Data.Common.Entities
         /// Наименование одежды
         /// </summary>
         public string Name { get; set; }
+
+        public ICollection<CompositionOfStyle> CompositionOfStyles { get; set; }
     }
 }

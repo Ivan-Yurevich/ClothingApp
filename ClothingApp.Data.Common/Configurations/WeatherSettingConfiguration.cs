@@ -7,11 +7,15 @@ using System.Text;
 
 namespace ClothingApp.Data.Common.Configurations
 {
-    public class WeatherSettingConfiguration : BaseConfiguration<WeatherSetting, int>
+    public class WeatherSettingConfiguration : BaseConfiguration<WeatherSetting, long>
     {
         protected override void ConfigureCustom(EntityTypeBuilder<WeatherSetting> builder)
         {
             builder.ToTable("WeatherSetting");
+            builder.HasKey(o => o.Id);
+
+            builder.Property(o => o.Name)
+                .IsRequired();
 
             builder
                 .HasOne(p => p.RangeRule)
@@ -20,9 +24,8 @@ namespace ClothingApp.Data.Common.Configurations
 
             builder
                 .HasOne(p => p.BooleanRule)
-                .WithMany(p => )
-
-            
+                .WithMany(p => p.WeatherSettings)
+                .HasForeignKey(f => f.BooleanRuleId);           
         }
     }
 }

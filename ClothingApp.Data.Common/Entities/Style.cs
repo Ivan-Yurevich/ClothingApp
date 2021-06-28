@@ -23,5 +23,9 @@ namespace ClothingApp.Data.Common.Entities
             /// </summary>
             Female = 2
         }
+
+        public ICollection<CompositionOfStyle> CompositionOfStyles { get; set; }
+
+        public ICollection<MatchingStyleToWeather> MatchingStyleToWeathers { get; set; }
     }
 }

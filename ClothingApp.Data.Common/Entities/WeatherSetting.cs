@@ -44,5 +44,7 @@ namespace ClothingApp.Data.Common.Entities
 
         public int RangeRuleId { get; set; }
         public RangeRule RangeRule { get; set; }
+
+        public ICollection<MatchingStyleToWeather> MatchingStyleToWeathers { get; set; }
     }
 }
