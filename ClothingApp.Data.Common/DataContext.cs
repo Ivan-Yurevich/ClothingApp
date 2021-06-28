@@ -1,5 +1,5 @@
-﻿using ClothingApp.Data.Common.Models;
-using ClothingApp.Data.Common.Models.WeatherModel;
+﻿using ClothingApp.Data.Common.Entities;
+using ClothingApp.Data.Common.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,12 +10,14 @@ namespace ClothingApp.Data.Common
     public class DataContext : DbContext
     {
         public DbSet<Clothes> Clothes { get; set; }
+        public DbSet<WeatherSetting> WeatherSettings { get; set; }
+        public DbSet<RangeRule> RangeRules { get; set; }
+        public DbSet<BooleanRule> BooleanRules { get; set; }
+        public DbSet<MatchingStyleToWeather> MatchingStyleToWeathers { get; set; }
+        public DbSet<Style> Styles { get; set; }
+        public DbSet<ClothingItem> ClothingItems { get; set; }
+        public DbSet<CompositionOfStyle> CompositionOfStyles { get; set; }
 
-        public DbSet<WeaerSetting> WeatherSettings { get; set; }
-
-        public DbSet<Rangerule> RangeRules { get; set; }
-
-        public DbSet<Booleanruule> BooleanRules { get; set; }
 
         public DataContext()
         {
