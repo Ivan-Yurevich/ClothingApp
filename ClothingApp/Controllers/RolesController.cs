@@ -1,5 +1,6 @@
 ﻿using ClothingApp.Models;
 using ClothingApp.Web.Areas.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace ClothingApp.Web.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class RolesController : Controller
     {
         RoleManager<IdentityRole> _roleManager;
@@ -18,9 +20,13 @@ namespace ClothingApp.Web.Controllers
             _roleManager = roleManager;
             _userManager = userManager;
         }
-        public IActionResult Index() => View(_roleManager.Roles.ToList());
+        public IActionResult Index()
+        {
+            ViewBag.Roles = _roleManager.Roles.ToList();
+            return View("~/Areas/Identity/Pages/Roles/Index.cshtml");
+        }
 
-        public IActionResult Create() => View();
+        public IActionResult Create() => View("~/Areas/Identity/Pages/Roles/Create.cshtml");
         [HttpPost]
         public async Task<IActionResult> Create(string name)
         {
@@ -55,7 +61,9 @@ namespace ClothingApp.Web.Controllers
 
         public IActionResult UserList()
         {
+            ViewBag.Users = _userManager.Users.ToList();
             return View("~/Areas/Identity/Pages/Roles/UserList.cshtml");
+            
         }
 
         public async Task<IActionResult> Edit(string userId)
@@ -74,7 +82,8 @@ namespace ClothingApp.Web.Controllers
                     UserRoles = userRoles,
                     AllRoles = allRoles
                 };
-                return View(model);
+                ViewBag.EditRole = model;
+                return View("~/Areas/Identity/Pages/Roles/Edit.cshtml");
             }
 
             return NotFound();
