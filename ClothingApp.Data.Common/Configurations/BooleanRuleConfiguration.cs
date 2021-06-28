@@ -11,8 +11,7 @@ namespace ClothingApp.Data.Common.Configurations
     {
         protected override void ConfigureCustom(EntityTypeBuilder<BooleanRule> builder)
         {
-            builder.ToTable("BooleanRule");
-            builder.HasKey(o => o.Id);
+            builder.ToTable("BooleanRules");
         }
     }
 }

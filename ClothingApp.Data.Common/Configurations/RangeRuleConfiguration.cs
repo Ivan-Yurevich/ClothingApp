@@ -11,8 +11,7 @@ namespace ClothingApp.Data.Common.Configurations
     {
         protected override void ConfigureCustom(EntityTypeBuilder<RangeRule> builder)
         {
-            builder.ToTable("RangeRule");
-            builder.HasKey(o => o.Id);
+            builder.ToTable("RangeRules");
         }
     }
 }

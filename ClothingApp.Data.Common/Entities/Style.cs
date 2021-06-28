@@ -11,6 +11,13 @@ namespace ClothingApp.Data.Common.Entities
         /// </summary>
         public string Name { get; set; }
 
+        public ICollection<CompositionOfStyle> CompositionOfStyles { get; set; }
+
+        public ICollection<MatchingStyleToWeather> MatchingStyleToWeathers { get; set; }
+    }
+
+    public class Gender : Style
+    {
         public enum GenderType
         {
             /// <summary>
@@ -23,9 +30,5 @@ namespace ClothingApp.Data.Common.Entities
             /// </summary>
             Female = 2
         }
-
-        public ICollection<CompositionOfStyle> CompositionOfStyles { get; set; }
-
-        public ICollection<MatchingStyleToWeather> MatchingStyleToWeathers { get; set; }
     }
 }

@@ -31,4 +31,25 @@ namespace ClothingApp.Data.Common.Entities
 
         public ICollection<WeatherSetting> WeatherSettings { get; set; }
     }
+
+    public class Rules : BooleanRule
+    {
+        public enum BooleanType
+        {
+            /// <summary>
+            /// Наличие дождя
+            /// </summary>
+            PresenceOfRain = 1,
+
+            /// <summary>
+            /// Наличие ветра
+            /// </summary>
+            PresenceOfWind = 2,
+
+            /// <summary>
+            /// Наличие снега
+            /// </summary>
+            PresenceOfSnow = 3
+        }
+    }
 }

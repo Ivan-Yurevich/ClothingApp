@@ -16,6 +16,11 @@ namespace ClothingApp.Data.Common.Entities
         /// </summary>
         public double MaxTemperarure { get; set; }
 
+        public ICollection<WeatherSetting> WeatherSettings { get; set; }
+    }
+
+    public class Rule : RangeRule
+    {
         public enum RuleType
         {
             /// <summary>
@@ -23,7 +28,5 @@ namespace ClothingApp.Data.Common.Entities
             /// </summary>
             Temperature = 1
         }
-
-        public ICollection<WeatherSetting> WeatherSettings { get; set; }
     }
 }

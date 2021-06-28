@@ -11,9 +11,7 @@ namespace ClothingApp.Data.Common.Configurations
     {
         protected override void ConfigureCustom(EntityTypeBuilder<Style> builder)
         {
-            builder.ToTable("Style");
-            builder.HasKey(o => o.Id);   
-            
+            builder.ToTable("Styles");
         }
     }
 }

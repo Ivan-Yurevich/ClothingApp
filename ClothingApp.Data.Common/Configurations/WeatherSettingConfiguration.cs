@@ -11,8 +11,7 @@ namespace ClothingApp.Data.Common.Configurations
     {
         protected override void ConfigureCustom(EntityTypeBuilder<WeatherSetting> builder)
         {
-            builder.ToTable("WeatherSetting");
-            builder.HasKey(o => o.Id);
+            builder.ToTable("WeatherSettings");
 
             builder.Property(o => o.Name)
                 .IsRequired();

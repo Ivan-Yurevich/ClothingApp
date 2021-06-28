@@ -11,7 +11,18 @@ namespace ClothingApp.Data.Common.Entities
         /// </summary>
         public string Name { get; set; }
 
-        public enum TypeOfClothing
+        public int BooleanRuleId { get; set; }
+        public BooleanRule BooleanRule { get; set; }
+
+        public int RangeRuleId { get; set; }
+        public RangeRule RangeRule { get; set; }
+
+        public ICollection<MatchingStyleToWeather> MatchingStyleToWeathers { get; set; }
+    }
+
+    public class TypeOfClothing : WeatherSetting
+    {
+        public enum TypeClothing
         {
             /// <summary>
             /// Головной убор
@@ -38,13 +49,5 @@ namespace ClothingApp.Data.Common.Entities
             /// </summary>
             Accessory = 5
         }
-
-        public int BooleanRuleId { get; set; }
-        public BooleanRule BooleanRule { get; set; }
-
-        public int RangeRuleId { get; set; }
-        public RangeRule RangeRule { get; set; }
-
-        public ICollection<MatchingStyleToWeather> MatchingStyleToWeathers { get; set; }
     }
 }
