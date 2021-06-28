@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ClothingApp.Core.Services.WeatherService;
+using ClothingApp.Web.Areas.Identity;
 
 namespace ClothingApp
 {
@@ -61,6 +62,8 @@ namespace ClothingApp
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            Seed.Initialize(app.ApplicationServices);
 
             app.UseAuthentication();
             app.UseAuthorization();

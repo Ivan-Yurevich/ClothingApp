@@ -46,6 +46,7 @@ namespace ClothingApp.Web.Controllers
             return respone;
 
         }
+        
         /// <summary>
         /// погода на завтра
         /// </summary>
@@ -55,18 +56,21 @@ namespace ClothingApp.Web.Controllers
             var remoteIpAddress = HttpContext.Connection.RemoteIpAddress.ToString();
 
             string city = _weatherService.GetCityName("46.0.40.18"); // ip adress
-            var respone = _weatherService.GetWeatherForTomorrow(city);
-
+            var respone = _weatherService.GetWeatherForTomorrow(city);           
 
             return respone;
 
         }
         [HttpGet]
-        public ActionResult Index()
-        {
-            ViewBag.WeatherTomorrow = GetWeatherTomorrow();
+        public ActionResult Today()
+        {           
             ViewBag.GetWeatherToday = GetWeatherToday();
-            return View("~/Views/StartPage/index.cshtml");
+            return View("Today");
+        }
+        public ActionResult Tomorrow()
+        {
+            ViewBag.GetWeatherTomorrow = GetWeatherTomorrow();
+            return View("Tomorrow");
         }
     }
 }

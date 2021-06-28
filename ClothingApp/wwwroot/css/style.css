@@ -56,13 +56,13 @@
 }
 
     .menu-choice a {
-        font-size: 35px;
+        font-size: 30px;
         font-family: FontAwesome;
         text-decoration: none;
         display: inline-block;
         line-height: 1;
         color: black;
-        margin-top: 10px;
+        margin-top: 5px;
     }
 
         .menu-choice a:after {
@@ -84,18 +84,21 @@
         }
 
 .tomorrow {
-    margin-left: 100px;
+    margin-left: 50px;
 }
 
 .week {
-    margin-left: 100px;
+    margin-left: 50px;
+}
+.login{
+    margin-left: 150px;
 }
 
 .gender {
     display: inline-block;
     overflow: hidden;
     float: right;
-    margin-top: -40px;
+    margin-top: -45px;
     margin-right: 15px;
     font-size: 35px;
 }
@@ -150,7 +153,7 @@
 
 .headlines {
     width: auto;
-    margin-left: 300px;
+    margin-left: 220px;
     margin-top: 20px;
 }
 
@@ -162,23 +165,11 @@
 .month {
     font-size: 20px;
     vertical-align: bottom;
-    width: 70px;
+    width: 170px;
 }
 
 .char {
     width: 300px;
-}
-
-.pressure {
-    width: 100px;
-    font-size: 20px;
-    vertical-align: bottom;
-}
-
-.humidity {
-    width: 110px;
-    font-size: 20px;
-    vertical-align: bottom;
 }
 
 .wind {
@@ -187,17 +178,12 @@
     vertical-align: bottom;
 }
 
-.feels-like {
-    width: 100px;
-    font-size: 20px;
-    vertical-align: bottom;
-}
-
 .hourly-weather {
     width: 800px;
-    margin-left: 370px;
+    margin-left: 290px;
     font-size: 20px;
     height: 200px;
+    margin-top: 20px;
 }
 
     .hourly-weather tr {
@@ -205,7 +191,7 @@
     }
 
 .temp {
-    width: 70px;
+    width: 150px;
 }
 
 .characteristic {
@@ -213,28 +199,11 @@
     text-align: center;
 }
 
-.pressure-num {
-    width: 100px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.humidity-num {
-    width: 110px;
-    font-weight: bold;
-    text-align: center;
-}
 
 .wind-num {
     width: 80px;
     font-weight: bold;
     text-align: center;
-}
-
-.feels-like-num {
-    font-weight: bold;
-    text-align: center;
-    width: 100px;
 }
 
 .clothes {
@@ -254,12 +223,12 @@
     }
 
 .advice {
-    margin-left: 1170px;
+    margin-left: 900px;
     margin-top: 10px;
     width: 200px;
     font-size: 20px;
 }
 
     .advice b {
-        font-size: 34px;
+        font-size: 28px;
     }

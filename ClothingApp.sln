@@ -10,7 +10,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClothingApp.Web", "Clothing
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClothingApp.Data.Common", "ClothingApp.Data.Common\ClothingApp.Data.Common.csproj", "{7E4A9030-7F2D-41DD-9BEB-94CF714F7DE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClothingApp.Core", "ClothingApp.Core\ClothingApp.Core.csproj", "{2F9643AF-BE76-4942-B5AC-054086F1A011}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClothingApp.Core", "ClothingApp.Core\ClothingApp.Core.csproj", "{2F9643AF-BE76-4942-B5AC-054086F1A011}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
