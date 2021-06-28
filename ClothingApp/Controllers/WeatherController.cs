@@ -65,11 +65,15 @@ namespace ClothingApp.Web.Controllers
         public ActionResult Today()
         {           
             ViewBag.GetWeatherToday = GetWeatherToday();
+            string[] dateTime = DateTime.Today.ToLongDateString().Split(' ');
+            ViewBag.DateTime = dateTime;
             return View("Today");
         }
         public ActionResult Tomorrow()
         {
             ViewBag.GetWeatherTomorrow = GetWeatherTomorrow();
+            string[] dateTimeTomorrow = DateTime.Today.AddDays(1).ToLongDateString().Split(' ');
+            ViewBag.DateTimeTomorrow = dateTimeTomorrow;
             return View("Tomorrow");
         }
     }
